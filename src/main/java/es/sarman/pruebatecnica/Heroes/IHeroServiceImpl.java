@@ -19,6 +19,12 @@ public class IHeroServiceImpl implements IHeroService {
     }
 
     @Override
+    public Hero createHero(HeroDTO heroDTO) {
+        Hero hero = new Hero(heroDTO.getName());
+        return heroRepository.save(hero);
+    }
+
+    @Override
     public Hero getHero(int id) {
         return heroRepository.findById(id).orElseThrow(() -> new HeroNotFoundException());
     }

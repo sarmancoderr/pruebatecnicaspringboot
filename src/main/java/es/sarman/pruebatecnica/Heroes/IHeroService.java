@@ -8,6 +8,8 @@ public interface IHeroService {
 
     List<Hero> getHeroes();
 
+    Hero createHero(HeroDTO heroDTO);
+
     Hero getHero(int id);
 
     List<Hero> searchHeroes(String query);

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 @RestController
@@ -16,6 +17,12 @@ public class HeroController {
     @GetMapping("/")
     public ResponseEntity<List<Hero>> listHeroes() {
         return new ResponseEntity<>(heroService.getHeroes(), HttpStatus.OK);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Hero createHero(@RequestBody HeroDTO heroDTO) {
+        return heroService.createHero(heroDTO);
     }
 
     @GetMapping("/{id}")
