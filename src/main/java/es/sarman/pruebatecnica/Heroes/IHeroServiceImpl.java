@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class IHeroServiceImpl implements IHeroService {
 
-    @Autowired HeroRepository heroRepository;
+    @Autowired private HeroRepository heroRepository;
 
     @Override
     public List<Hero> getHeroes() {

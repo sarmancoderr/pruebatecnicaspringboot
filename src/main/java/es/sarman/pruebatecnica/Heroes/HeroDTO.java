@@ -2,7 +2,7 @@ package es.sarman.pruebatecnica.Heroes;
 
 public class HeroDTO {
 
-    public String name;
+    private String name;
 
     public HeroDTO() {}
 

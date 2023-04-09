@@ -10,9 +10,9 @@ public class Hero {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private int id;
 
-    public String name;
+    private String name;
 
     public Hero() {}
 

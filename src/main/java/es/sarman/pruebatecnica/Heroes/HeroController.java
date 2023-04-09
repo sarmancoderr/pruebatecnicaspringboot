@@ -12,7 +12,8 @@ import java.util.List;
 @RequestMapping("/heroes")
 public class HeroController {
 
-    @Autowired IHeroService heroService;
+    @Autowired
+    private IHeroService heroService;
 
     @GetMapping("/")
     public ResponseEntity<List<Hero>> listHeroes() {

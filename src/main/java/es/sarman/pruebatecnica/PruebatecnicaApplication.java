@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableWebSecurity
 public class PruebatecnicaApplication {
 
-	Logger logger = LoggerFactory.getLogger(PruebatecnicaApplication.class);
+	private Logger logger = LoggerFactory.getLogger(PruebatecnicaApplication.class);
 
 	@Autowired
-	HeroRepository heroRepository;
+	private HeroRepository heroRepository;
 
 	@Value("${greet}")
 	public String greet;
