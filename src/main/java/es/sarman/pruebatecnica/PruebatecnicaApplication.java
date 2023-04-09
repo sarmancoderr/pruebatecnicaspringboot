@@ -39,10 +39,10 @@ public class PruebatecnicaApplication {
 	@Bean
 	InitializingBean sendDatabase() {
 		return () -> {
-			logger.info("FILLING DB");
+			/*logger.info("FILLING DB");
 			heroRepository.save(new Hero("Superman"));
 			heroRepository.save(new Hero("Batman"));
-			heroRepository.save(new Hero("Manolito el fuerte"));
+			heroRepository.save(new Hero("Manolito el fuerte"));*/
 		};
 	}
 }

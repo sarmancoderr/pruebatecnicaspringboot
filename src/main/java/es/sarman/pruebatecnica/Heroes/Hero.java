@@ -1,11 +1,20 @@
 package es.sarman.pruebatecnica.Heroes;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "heroes")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Hero {
 
     @Id
@@ -13,26 +22,4 @@ public class Hero {
     private int id;
 
     private String name;
-
-    public Hero() {}
-
-    public Hero(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

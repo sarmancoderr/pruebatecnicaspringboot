@@ -2,6 +2,7 @@ package es.sarman.pruebatecnica.Heroes;
 
 import es.sarman.pruebatecnica.Heroes.Exceptions.ExistingHeroException;
 import es.sarman.pruebatecnica.Heroes.Exceptions.HeroNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class IHeroServiceImpl implements IHeroService {
 
-    @Autowired private HeroRepository heroRepository;
+    private final HeroRepository heroRepository;
 
     @Override
     public List<Hero> getHeroes() {
@@ -20,7 +22,8 @@ public class IHeroServiceImpl implements IHeroService {
 
     @Override
     public Hero createHero(HeroDTO heroDTO) {
-        Hero hero = new Hero(heroDTO.getName());
+        Hero hero = new Hero();
+        hero.setName(heroDTO.getName());
         return heroRepository.save(hero);
     }
 

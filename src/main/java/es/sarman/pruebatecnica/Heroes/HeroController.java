@@ -1,5 +1,6 @@
 package es.sarman.pruebatecnica.Heroes;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/heroes")
+@RequiredArgsConstructor
 public class HeroController {
 
-    @Autowired
-    private IHeroService heroService;
+    private final IHeroService heroService;
 
     @GetMapping("/")
     public ResponseEntity<List<Hero>> listHeroes() {
