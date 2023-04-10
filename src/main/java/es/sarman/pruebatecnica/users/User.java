@@ -24,4 +24,21 @@ public class User {
     @NonNull private String password;
 
 
+    public static User fromDTO(UserDTO userDTO) {
+        User user = new User();
+
+        user.setName(userDTO.getName());
+        user.setSurname(userDTO.getSurname());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+
+        return user;
+    }
+
+    public void updateFromDTO(UserDTO update) {
+        setName(update.getName());
+        setSurname(update.getSurname());
+        setEmail(update.getEmail());
+        setPassword(update.getPassword());
+    }
 }
