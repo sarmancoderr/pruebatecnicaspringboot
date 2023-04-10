@@ -2,6 +2,7 @@ package es.sarman.pruebatecnica;
 
 import es.sarman.pruebatecnica.Heroes.Hero;
 import es.sarman.pruebatecnica.Heroes.HeroRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -14,12 +15,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @SpringBootApplication
 @RestController
 @EnableWebSecurity
+@Slf4j
 public class PruebatecnicaApplication {
-
-	private Logger logger = LoggerFactory.getLogger(PruebatecnicaApplication.class);
 
 	@Autowired
 	private HeroRepository heroRepository;
@@ -29,6 +31,7 @@ public class PruebatecnicaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PruebatecnicaApplication.class, args);
+		log.info("La aplicación inició correctamente");
 	}
 
 	@GetMapping("/greet")
@@ -39,10 +42,14 @@ public class PruebatecnicaApplication {
 	@Bean
 	InitializingBean sendDatabase() {
 		return () -> {
-			/*logger.info("FILLING DB");
+			List<Hero> allHeroes = (List<Hero>) heroRepository.findAll();
+			if (greet.contains("dev") && allHeroes.size() > 0) {
+				return;
+			}
+			log.info("FILLING DB");
 			heroRepository.save(new Hero("Superman"));
 			heroRepository.save(new Hero("Batman"));
-			heroRepository.save(new Hero("Manolito el fuerte"));*/
+			heroRepository.save(new Hero("Manolito el fuerte"));
 		};
 	}
 }

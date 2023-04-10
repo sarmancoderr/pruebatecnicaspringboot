@@ -22,4 +22,9 @@ public class Hero {
     private int id;
 
     private String name;
+
+    public Hero(String name) {
+        this.name = name;
+    }
+
 }
