@@ -36,9 +36,13 @@ public class User {
     }
 
     public void updateFromDTO(UserDTO update) {
-        setName(update.getName());
-        setSurname(update.getSurname());
-        setEmail(update.getEmail());
-        setPassword(update.getPassword());
+        if (update.getName() != null)
+            setName(update.getName());
+
+        if (update.getSurname() != null)
+            setSurname(update.getSurname());
+
+        if (update.getPassword() != null)
+            setPassword(update.getPassword());
     }
 }

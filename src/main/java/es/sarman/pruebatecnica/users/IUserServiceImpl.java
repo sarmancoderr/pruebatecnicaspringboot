@@ -42,14 +42,14 @@ public class IUserServiceImpl implements IUserService {
 
     @Override
     public User updateUser(int id, UserDTO update) {
-        Optional<User> userByEmail = userRepository.findUserByEmail(update.getEmail());
+        /* Optional<User> userByEmail = userRepository.findUserByEmail(update.getEmail());
         if (userByEmail.isPresent()) {
             throw new ExistingUserException();
-        }
+        }*/
 
         User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException());
 
-        if (!update.getPassword().isEmpty()) {
+        if (update.getPassword() != null) {
             update.setPassword(crypter.cryptPassword(update.getPassword()));
         }
         user.updateFromDTO(update);
