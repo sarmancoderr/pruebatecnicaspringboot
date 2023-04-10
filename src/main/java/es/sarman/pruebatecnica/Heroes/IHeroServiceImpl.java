@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,11 @@ public class IHeroServiceImpl implements IHeroService {
 
     @Override
     public Hero createHero(HeroDTO heroDTO) {
+        Optional<Hero> existingHero = heroRepository.findByName(heroDTO.getName());
+        if (existingHero.isPresent()) {
+            throw new ExistingHeroException();
+        }
+
         Hero hero = new Hero();
         hero.setName(heroDTO.getName());
         log.info("Creando heroe con nombre {}", hero.getName());
