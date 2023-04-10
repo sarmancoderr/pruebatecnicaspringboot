@@ -2,6 +2,7 @@ package es.sarman.pruebatecnica.users;
 
 import es.sarman.pruebatecnica.users.exceptions.ExistingUserException;
 import es.sarman.pruebatecnica.users.exceptions.UserNotFoundException;
+import es.sarman.pruebatecnica.users.utils.Crypter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class IUserServiceImpl implements IUserService {
 
+    private final Crypter crypter;
     private final UserRepository userRepository;
 
     @Override
@@ -29,7 +31,7 @@ public class IUserServiceImpl implements IUserService {
             throw new ExistingUserException();
         }
 
-        // TODO: encriptar contraseña
+        userDTO.setPassword(crypter.cryptPassword(userDTO.getPassword()));
         return userRepository.save(User.fromDTO(userDTO));
     }
 
@@ -46,7 +48,10 @@ public class IUserServiceImpl implements IUserService {
         }
 
         User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException());
-        // TODO: encriptar contraseña
+
+        if (!update.getPassword().isEmpty()) {
+            update.setPassword(crypter.cryptPassword(update.getPassword()));
+        }
         user.updateFromDTO(update);
         return userRepository.save(user);
     }
